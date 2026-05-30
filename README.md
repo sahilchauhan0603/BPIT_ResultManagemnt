@@ -1,165 +1,94 @@
 # BPIT Result Management System
 
 A full-stack web application for managing student results with separate frontend and backend services in a monorepo structure.
+# BPIT Result Management System
 
-## 📁 Project Structure
+Monorepo for a full-stack student result management portal with a React frontend and an Express backend.
 
+## Project Structure
+
+```text
+BPIT_Results/
+|-- frontend/   React + Vite app
+|-- backend/    Node.js + Express API
+|-- README.md
 ```
-BPIT_ResultManagement/
-├── frontend/          # React + Vite frontend (Port 5173)
-├── backend/           # Node.js + Express backend (Port 5000)
-├── .gitignore         # Root gitignore
-└── README.md          # This file
-```
 
-## 🚀 Quick Start
+## Getting Started
 
 ### Prerequisites
-- Node.js (v16 or higher)
-- MongoDB (local or Atlas)
-- npm or yarn
 
-### 1. Clone the Repository
-```bash
-git clone <your-repo-url>
-cd BPIT_ResultManagement
-```
+- Node.js 16 or newer
+- MongoDB
+- npm
 
-### 2. Backend Setup
-```bash
+### Backend
+
+```powershell
 cd backend
 npm install
-copy .env.example .env    # Windows
-# cp .env.example .env    # Mac/Linux
-
-# Edit .env file with your MongoDB URI and JWT secret
+copy .env.example .env
 npm run dev
 ```
 
-Backend runs on: **http://localhost:5000**
+The backend runs on `http://localhost:5000`.
 
-### 3. Frontend Setup
-```bash
+### Frontend
+
+```powershell
 cd frontend
 npm install
 npm run dev
 ```
 
-Frontend runs on: **http://localhost:5173**
+The frontend runs on `http://localhost:5173`.
 
-## 📚 Documentation
+## Documentation
 
-- **Backend Documentation:** [`backend/DOCUMENTATION.md`](./backend/DOCUMENTATION.md)
-- **Frontend Documentation:** [`frontend/DOCUMENTATION.md`](./frontend/DOCUMENTATION.md)
+- [Backend docs](backend/DOCUMENTATION.md)
+- [Frontend docs](frontend/DOCUMENTATION.md)
 
-## 🛠️ Tech Stack
+## Environment Variables
 
-### Frontend
-- React 19
-- React Router v7
-- Tailwind CSS v4
-- Axios
-- Chart.js
-- Framer Motion
-- Vite
+Backend `.env` example:
 
-### Backend
-- Node.js
-- Express.js
-- MongoDB + Mongoose
-- JWT Authentication
-- bcryptjs
-- CORS
-
-## 🔧 Configuration
-
-### Backend Environment Variables
-Create `backend/.env`:
 ```env
 PORT=5000
 NODE_ENV=development
 MONGODB_URI=mongodb://localhost:27017/bpit_results
-JWT_SECRET=your_super_secret_jwt_key_change_this
+JWT_SECRET=change_this_secret
 JWT_EXPIRE=7d
 FRONTEND_URL=http://localhost:5173
 ```
 
-### Frontend Environment Variables
-Create `frontend/.env`:
+Frontend `.env` example:
+
 ```env
 VITE_API_URL=http://localhost:5000
 VITE_APP_NAME=BPIT Results Portal
 VITE_APP_VERSION=1.0.0
 ```
 
-## 📡 API Endpoints
+## API Overview
 
 Base URL: `http://localhost:5000/api`
 
-### Authentication
-- `POST /auth/register` - Register user
-- `POST /auth/login` - Login user
-- `GET /auth/me` - Get current user (Protected)
+- `POST /auth/register`
+- `POST /auth/login`
+- `GET /auth/me`
+- `GET /students/profile`
+- `GET /admin/students`
+- `POST /admin/students`
+- `GET /results/my-results`
+- `GET /results/search/:enrollmentNumber`
+- `GET /admin/results`
+- `POST /admin/results`
+- `GET /admin/analytics`
 
-### Students
-- `GET /students/profile` - Get profile (Student)
-- `GET /admin/students` - Get all students (Admin)
-- `POST /admin/students` - Create student (Admin)
+## Notes
 
-### Results
-- `GET /results/my-results` - Get my results (Protected)
-- `GET /results/search/:enrollmentNumber` - Search results (Public)
-- `GET /admin/results` - Get all results (Admin)
-- `POST /admin/results` - Create result (Admin)
-
-### Analytics
-- `GET /admin/analytics` - Get analytics (Admin)
-
-## 👥 User Roles
-
-| Role | Permissions |
-|------|-------------|
-| **Student** | View own results, update profile |
-| **Admin** | Manage students, manage results, view analytics |
-
-## 🚀 Deployment
-
-### Backend Deployment
-1. Set environment variables on your hosting platform
-2. Use `npm start` for production
-3. Ensure MongoDB connection is configured
-
-### Frontend Deployment
-1. Build the project: `npm run build`
-2. Deploy the `dist/` folder
-3. Update `VITE_API_URL` to production backend URL
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Commit your changes: `git commit -m 'Add feature'`
-4. Push to the branch: `git push origin feature-name`
-5. Submit a pull request
-
-## 📝 Git Workflow
-
-```bash
-# Check status
-git status
-
-# Add changes
-git add .
-
-# Commit changes
-git commit -m "Your commit message"
-
-# Push to remote
-git push origin main
-```
-
-## 🐛 Troubleshooting
-
+- Students can view their own results and profile.
+- Admins can manage students, results, and analytics.
 ### Backend Issues
 - Ensure MongoDB is running
 - Check `.env` configuration
